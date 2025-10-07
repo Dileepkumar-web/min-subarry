@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Solution {
+    public int sumSubarrayMins(int[] arr) {
+        int n = arr.length;
+        int sum = 0;
+
+        // Loop through all possible starting points
+        for (int i = 0; i < n; i++) {
+            int minVal = arr[i];  // Initialize min with the first element of subarray
+
+            // Loop through all subarrays starting at i
+            for (int j = i; j < n; j++) {
+                minVal = Math.min(minVal, arr[j]); // Update min for subarray arr[i..j]
+                sum += minVal;                     // Add to total sum
+            }
+        }
+
+        return sum;
+    }
+
+    // Test
+    public static void main(String[] args) {
+        int[] arr = {3, 1, 2, 4};
+        Solution sol = new Solution();
+        System.out.println(sol.sumSubarrayMins(arr));  // Output: 17
+    }
+}
